@@ -8,13 +8,13 @@ import java.util.*;
 public class LinkedHashMap<K, V> implements Map<K, V> {
 
     private List<List<maps.Entry<K, V>>> entries;
+    private int capacity = 1 << 4;
     private int count;
     private maps.Entry<K, V> head;
     private maps.Entry<K, V> tail;
 
     public LinkedHashMap() {
         entries = new ArrayList<>();
-        PriorityQueue<Integer> a;
     }
 
     @Override
@@ -48,14 +48,32 @@ public class LinkedHashMap<K, V> implements Map<K, V> {
         if (entries.get(index).size() == 1) {
             return entries.get(index).get(0).getValue();
         } else if (entries.get(index).size() > 1) {
-
+            for (maps.Entry<K, V> entry : entries.get(index)) {
+                if (entry.getKey().equals(key)) {
+                    return entry.getValue();
+                }
+            }
         }
 
-        //return entries.get(index).getValue();
+        return null;
     }
 
     @Override
     public V put(K key, V value) {
+        if (key == null) {
+            return null;
+        }
+
+        int index = key.hashCode() % entries.size();
+
+        if (entries.get(index) == null) {
+
+        }
+
+        if (entries.get(index).size() > 0) {
+
+        }
+
         return null;
     }
 

@@ -2,9 +2,6 @@ package maps;
 
 import java.util.Map;
 
-/**
- * Created by cary on 5/30/17.
- */
 class Entry<K, V> implements Map.Entry<K, V> {
     private K key;
     private V value;

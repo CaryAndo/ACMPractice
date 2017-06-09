@@ -1,13 +1,15 @@
 package graphs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class GraphNode<T> {
     private T data;
-    private List<GraphNode<T>> connections;
+    private List<Edge<T>> connections;
 
     public GraphNode(T data) {
+        this.connections = new ArrayList<>();
         this.data = data;
     }
 
@@ -19,14 +21,21 @@ public class GraphNode<T> {
         this.data = data;
     }
 
-    public List<GraphNode<T>> getConnections() {
+    public List<Edge<T>> getConnections() {
         return connections;
     }
 
-    public void addConnection(GraphNode<T> connection) {
+    public void addConnection(Edge connection) {
         if (!connections.contains(connection)) {
             connections.add(connection);
         }
+    }
+
+    public GraphNode<T> newChildNode(final int weight, final T data) {
+        final GraphNode<T> node = new GraphNode<T>(data);
+        final Edge<T> connection = new Edge<>(weight, node);
+        this.addConnection(connection);
+        return node;
     }
 
     @Override

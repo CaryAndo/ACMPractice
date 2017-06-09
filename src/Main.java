@@ -1,12 +1,31 @@
-import etc.PrimeNumberSieve;
+import graphs.GraphNode;
+import graphs.GraphUtils;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        GraphNode<String> root = new GraphNode<>("a");
+
+        root
+                .newChildNode(5, "b")
+                .newChildNode(10, "c");
+
+        root
+                .newChildNode(10, "d")
+                .newChildNode(10, "e");
+
+        final GraphNode<String> a = root.newChildNode(4,"f");
+        a.newChildNode(8, "j");
+
+        final GraphNode<String> b = root.newChildNode(5, "g");
+        b.newChildNode(2, "h");
+        b.newChildNode(4, "i");
+
+        System.out.println(GraphUtils.findCheapestLeaf(root).getData());
 
 
-        PrimeNumberSieve.printPrimesInRange(100, 2000);
+        //PrimeNumberSieve.printPrimesInRange(100, 2000);
 
         /*TrieNode root = new TrieNode(' ');
         TrieNode.addWord("hey", root);

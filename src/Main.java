@@ -1,11 +1,19 @@
-import graphs.GraphNode;
-import graphs.GraphUtils;
+import arrays.ArrayUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        GraphNode<String> root = new GraphNode<>("a");
+        String e = "112";
+        List<String> storage = new ArrayList<>();
+
+        ArrayUtils.decodePossibleCombinations(e, "", storage);
+        System.out.println(storage);
+
+        /*GraphNode<String> root = new GraphNode<>("a");
 
         root
                 .newChildNode(5, "b")
@@ -22,7 +30,7 @@ public class Main {
         b.newChildNode(2, "h");
         b.newChildNode(4, "i");
 
-        System.out.println(GraphUtils.findCheapestLeaf(root).getData());
+        System.out.println(GraphUtils.findCheapestLeaf(root).getData());*/
 
 
         //PrimeNumberSieve.printPrimesInRange(100, 2000);

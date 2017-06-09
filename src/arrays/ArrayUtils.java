@@ -1,5 +1,7 @@
 package arrays;
 
+import java.util.List;
+
 /**
  * Created by cary on 5/23/17.
  */
@@ -103,14 +105,37 @@ public final class ArrayUtils {
         return true;
     }
 
-
     /**
-     * 7 3 5 1
-     * 2 7 3 5
-     * 1 2 7 3
-     * 4 1 2 7
+     * Given a mapping from characters to integers like
+     * i.e. 'a' -> 1, 'b' -> 2, 'c' -> 3
+     * and a String of numbers,
+     * output all the combinations that the string could
+     * be interpreted as.
+     *
+     * e.g. "112" -> {(1, 1, 2), (11, 2), (1, 12)} -> {"aab", "lb", "am"}
      */
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
+    public static void decodePossibleCombinations(String encoded, String temp, List<String> combinations) {
+        char[] charMapping = new char[27];
+        for (int i = 1; i < 27; i++) {charMapping[i] = (char) (97 + i - 1);}
+
+        if (encoded.length() == 0) {
+            combinations.add(temp);
+            return;
+        }
+
+        String firstNum = "" + encoded.charAt(0);
+        int firstNumInt = Integer.parseInt(firstNum);
+        if (encoded.length() > 1) {
+            encoded = encoded.substring(1);
+            decodePossibleCombinations(encoded, temp + charMapping[firstNumInt], combinations);
+            String firstAndSecondNum = firstNum + encoded.charAt(0);
+            int comboInt = Integer.parseInt(firstAndSecondNum);
+
+            if (comboInt < 26) {
+                decodePossibleCombinations(encoded.substring(1), temp + charMapping[comboInt], combinations);
+            }
+        } else {
+            decodePossibleCombinations("", temp + charMapping[firstNumInt], combinations);
+        }
     }
 }
